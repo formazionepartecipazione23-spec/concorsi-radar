@@ -1,0 +1,3 @@
+output/bandi/
+*.pdf
+__pycache__/
