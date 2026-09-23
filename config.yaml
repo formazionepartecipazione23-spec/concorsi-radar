@@ -1,0 +1,58 @@
+# Configurazione ConcorsiRadar - FP Formazione e Partecipazione
+db_path: output/radar.sqlite
+bandi_dir: output/bandi          # PDF scaricati
+output_dir: output
+
+# Comparti da monitorare (usati per filtrare e per il report)
+comparti:
+  - Funzioni Locali
+  - Funzioni Centrali
+  - Sanità
+  - Istruzione e Ricerca
+  - Regioni ed Enti Locali
+
+sources:
+  inpa_portale:
+    enabled: true
+    # Endpoint VERIFICATI il 22/09/2026 (vedi docstring in radar/sources/inpa_portale.py)
+    base_url: https://portale.inpa.gov.it/concorsi-smart/api
+    search_path: /concorso-public-area/search-better
+    detail_path: /concorso-public-area/{id}
+    media_url: https://portale.inpa.gov.it/api/media
+    page_size: 100              # 1.667 aperte al 22/09/2026 -> 17 pagine
+    max_pages: 40
+    stato: ["OPEN"]             # lista, non stringa (altrimenti HTTP 500)
+    text: ""
+    # filtri opzionali (ID dal form di ricerca): categoriaId, regioneId (1..20, -1=Nazionale), settoreId
+    dettaglio: true             # una GET per bando: tutti gli allegati, ente ufficiale, requisiti
+    categorie_escluse: ["Scelta PA/sede", "Selezione Professionisti ed Esperti", "Avvisi OIV", "Bando Apprendistato"]
+  inpa_wp:
+    enabled: false
+    # Blog istituzionale di inpa.gov.it (~130 articoli, per lo più avvisi di manutenzione).
+    # NON è il flusso dei bandi: tenuto solo come fonte marginale, disattivato di default.
+    base_url: https://www.inpa.gov.it/wp-json/wp/v2/posts
+    per_page: 100
+    max_pages: 5
+  gazzetta:
+    enabled: true
+    # GU 4ª Serie Speciale Concorsi (martedì e venerdì) - endpoint VERIFICATI il 22/09/2026
+    base_url: https://www.gazzettaufficiale.it
+    ultimi_fascicoli: 2          # 2 = una settimana; il primo run puoi metterlo a 8 (~30 giorni)
+    testo_atto: true             # una GET per atto: testo integrale con materie d'esame
+    tipi_esclusi: ["DIARIO", "AVVISO", "RETTIFICA", "AVVISO DI RETTIFICA", "GRADUATORIA"]
+
+classify:
+  provider: anthropic           # anthropic | rules
+  model: claude-sonnet-4-6
+  max_pdf_chars: 60000
+  # se la chiamata LLM fallisce, si usa la classificazione a regole (keyword)
+  fallback_rules: true
+
+match:
+  soglia_abbinamento: 0.55      # copertura minima materie per proporre un corso
+  soglia_gap: 3                 # n. bandi non coperti perché una materia diventi "gap"
+
+report:
+  titolo: "Concorsi, Mobilità e Selezioni – Monitoraggio nazionale PA"
+  ente: "FP Formazione e Partecipazione – Provider ECM 7761"
+  contatti: "segreteria@fpformazione.it – https://fpformazione.it"

@@ -1,0 +1,1892 @@
+# Catalogo corsi FP Formazione e Partecipazione - RICOSTRUITO DAL CATALOGO REALE il 22/09/2026
+# Fonte: fpformazione.it (Moodle), categoria "Preparazione ai concorsi pubblici" (id 22) e
+# sottocategoria "Concorsi pubblici territoriali" (id 40): 28 corsi. URL = pagina reale del corso.
+# Le materie sono ricavate dalle SEZIONI reali del corso su Moodle (scheda 'Contenuto del corso'),
+# salvate in `sezioni_moodle` e tradotte nei codici della tassonomia (mappa in radar/catalogo_sync.py).
+# `sezioni_non_mappate` elenca le sezioni che la mappa non ha riconosciuto: vanno guardate a mano.
+#
+# tipo_corso: generico  -> vale per qualsiasi bando con materie compatibili
+#             dedicato  -> costruito su un bando preciso; abbinato ad altri bandi solo per affinità
+#                          di materie, con bonus se l'ente del bando compare in `enti_target`.
+# Il codice_corso FPF-<id> coincide con l'id Moodle: usalo come chiave anche nel FP Gestionale.
+# Rigenerazione automatica: python -m radar.catalogo_sync (richiede token web service Moodle).
+
+corsi:
+- codice_corso: FPF-200
+  moodle_id: 200
+  tipo_corso: generico
+  titolo: Concorsi negli Enti Locali - Istruttori e Funzionari (settore amministrativo)
+  livello:
+  - istruttore
+  - funzionario
+  comparti:
+  - Funzioni Locali
+  - Regioni ed Enti Locali
+  materie:
+  - ANTICORR
+  - CONTAB_EL
+  - CONTRATTI_PUBBLICI
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_TRIBUTARIO
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PERFORMANCE
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=200
+  enti_target: []
+  sezioni_moodle:
+  - Cos'è la PA e come si articola
+  - Normativa sul pubblico impiego (165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Valutazione e ciclo della performance nella PA
+  - Diritti e doveri nello Smart Working
+  - Ordinamento istituzionale, finanziario ed economico degli Enti Locali (Testo Unico)
+  - Disciplina dei Tributi comunali
+  - Diritto amministrativo
+  - Codice dell'Amministrazione digitale e innovazione nella PA
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Nuovo Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - General Data Protection Regulation (GDPR)
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Elementi di Europrogettazione
+  - Simulazioni da 60 domande della prova di concorso
+  - Simulazioni da 40 domande della prova di concorso
+  - Elementi di Diritto Penale
+  - Corso di informatica
+  - Corso di lingua inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-261
+  moodle_id: 261
+  tipo_corso: generico
+  titolo: Concorso per 3.997 posti in diverse Amministrazioni centrali e territoriali
+  livello:
+  - istruttore
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  - Funzioni Locali
+  - Regioni ed Enti Locali
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=261
+  enti_target: []
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - General Data Protection Regulation (GDPR)
+  - Principi di Economia politica e Politica economica
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Diritto dell'Unione Europea
+  - Elementi di Diritto Penale
+  - Competenze trasversali per quesiti situazionali
+  - Simulazioni per i quesiti di capacità logico-deduttiva e di ragionamento critico-verbale
+  - Lezioni di informatica
+  - Lezioni di inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-290
+  moodle_id: 290
+  tipo_corso: generico
+  titolo: Concorso RIPAM per 1340 Funzionari in diverse Amministrazioni centrali - Profili amministrativi ed economici
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COST
+  - DIR_PENALE_PA
+  - ECONOMIA_AZIENDALE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=290
+  enti_target: []
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Elementi di Diritto Penale
+  - Corso di informatica
+  - Lezioni di inglese
+  - Competenze trasversali
+  - Simulazione test logico-deduttivi
+  - Diritto Civile
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-349
+  moodle_id: 349
+  tipo_corso: generico
+  titolo: Concorso per 178 funzionari nei piccoli Comuni (profili giuridico ed economico-contabile)
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Locali
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - COMUNICAZIONE_PA
+  - CONTAB_EL
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COMMERCIALE
+  - DIR_COST
+  - DIR_TRIBUTARIO
+  - INFORMATICA
+  - INGLESE
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=349
+  enti_target: []
+  sezioni_moodle:
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Diritto Costituzionale
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Innovazione digitale nella Pubblica Amministrazione
+  - La Comunicazione Pubblica
+  - Diritto Amministrativo
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Ordinamento Istituzionale, finanziario e contabile degli Enti Locali (Titolo V e D.Lgs. 267/2000)
+  - Diritto tributario
+  - Bilancio e contabilità pubblica
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - General Data Protection Regulation (GDPR)
+  - Diritto Civile e Commerciale
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Corso di informatica
+  - Corso di lingua inglese
+  - Competenze trasversali
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-347
+  moodle_id: 347
+  tipo_corso: generico
+  titolo: Concorso per 131 Assistenti Amministrativi - ASL Roma 3 (assistenti amministrativi in Sanità)
+  livello:
+  - istruttore
+  comparti:
+  - Sanità
+  materie:
+  - ANTICORR
+  - CONTRATTI_PUBBLICI
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_LAVORO
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - LEGISLAZ_SANITARIA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - ORG_SSN
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - RAGIONERIA
+  - SANITA_DIGITALE
+  - SICUREZZA_LAVORO
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=347
+  enti_target: []
+  sezioni_moodle:
+  - Organizzazione costituzionale in Italia
+  - Normativa in materia di pubblico impiego
+  - Le caratteristiche del lavoro Pubblico
+  - Codice di Comportamento dei dipendenti pubblici
+  - Il Sistema Sanitario Nazionale
+  - Codice dell'Amministrazione Digitale e documentazione amministrativa
+  - Sanità digitale
+  - Diritto Amministrativo
+  - Contabilità Aziendale
+  - Piani e responsabili per la prevenzione della corruzione
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - General Data Protection Regulation (GDPR)
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Amministrazione Enti Pubblici
+  - Normativa in Materia di Contratti Pubblici
+  - Normativa in materia di privacy in sanità
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Pianificazione, Programmazione, Controllo, Organizzazione e Gestione aziendale
+  - La Pianificazione Strategica
+  - Elementi di Europrogettazione
+  - Diritto del Lavoro - primo modulo
+  - Diritto del Lavoro - Secondo Modulo
+  - Lezioni di informatica
+  - Lezioni di inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-363
+  moodle_id: 363
+  tipo_corso: generico
+  titolo: Concorso per 35 Assistenti Amministrativi - Servizio Sanitario Regionale Marche
+  livello:
+  - istruttore
+  comparti:
+  - Sanità
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - INFORMATICA
+  - INGLESE
+  - LEGISLAZ_SANITARIA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - ORG_SSN
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SANITA_DIGITALE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=363
+  enti_target: []
+  sezioni_moodle:
+  - Organizzazione costituzionale dell'ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione pubblica
+  - Normativa sul pubblico impiego (Legge 165/2001)
+  - Codice di comportamento dei dipendenti pubblici
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - Legge Sanitaria Regionale
+  - Codice dei contratti pubblici
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - General Data Protection Regulation (GDPR)
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Elementi di Diritto Penale
+  - Il Sistema Sanitario Nazionale
+  - Sanità digitale
+  - Normativa in materia di privacy in sanità
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Competenze trasversali (Soft skills)
+  - Corso di informatica | Livello base
+  - Corso di informatica | Livello intermedio
+  - Corso di lingua inglese | Livello B1
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-365
+  moodle_id: 365
+  tipo_corso: generico
+  titolo: Concorso per 84 Operatori Sociosanitari - Azienda Zero, Veneto (OSS)
+  livello:
+  - operatore
+  comparti:
+  - Sanità
+  materie:
+  - ASSISTENZA_OSS
+  - DEONTOLOGIA_SAN
+  - DIGITALE_PA
+  - INFORMATICA
+  - LEGISLAZ_SANITARIA
+  - ORG_SSN
+  - PRIVACY
+  - SANITA_DIGITALE
+  - SICUREZZA_LAVORO
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=365
+  enti_target: []
+  sezioni_moodle:
+  - La pre-selezione
+  - La prova scritta
+  - La prova pratica
+  - La prova orale
+  - La Privacy
+  - La Sicurezza
+  - La Sanità Digitale
+  - I Protagonisti del Sistema Sanitario Nazionale
+  - Il Sistema Sanitario Nazionale
+  - Etica Professionale
+  - Informatica
+  - Vecchi Questionari Concorso OSS per esercitarsi
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-377
+  moodle_id: 377
+  tipo_corso: generico
+  titolo: Concorso per 8 Funzionari Amministrativi - Comune di Brescia
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Locali
+  materie:
+  - ANTICORR
+  - CONTAB_EL
+  - CONTRATTI_PUBBLICI
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - INFORMATICA
+  - INGLESE
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=377
+  enti_target: []
+  sezioni_moodle:
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale della Pubblica Amministrazione
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Innovazione digitale nella Pubblica Amministrazione
+  - Diritto Costituzionale
+  - Ordinamento Istituzionale, finanziario e contabile degli Enti Locali (Titolo V e D.Lgs. 267/2000)
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Elementi di Diritto Penale
+  - Corso di informatica
+  - Corso di lingua inglese - Livello B1
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-262
+  moodle_id: 262
+  tipo_corso: dedicato
+  titolo: Concorso INPS per 49 dirigenti di seconda fascia
+  livello:
+  - dirigente
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - inps
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - CONTROLLO_GESTIONE
+  - DIR_AMM
+  - DIR_COST
+  - DIR_LAVORO
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - POLITICHE_PUBBLICHE
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - RAGIONERIA
+  - SERVIZI_SOCIALI
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=262
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Competenze trasversali
+  - Diritto Amministrativo
+  - Diritto del Lavoro e legislazione sociale
+  - Diritto dell'Unione Europea
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Contabilità aziendale
+  - Analisi delle Politiche Pubbliche
+  - Controlli nella Pubblica Amministrazione
+  - Normativa e misure di contrasto alla povertà, inclusione e sostegno ai più fragili
+  - Lezioni di informatica
+  - Corso di inglese - Livello B2
+  - Simulazioni per i quesiti di ragionamento verbale e logico-astratto
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-299
+  moodle_id: 299
+  tipo_corso: dedicato
+  titolo: Selezione INAIL di 4 Dirigenti di seconda fascia
+  livello:
+  - dirigente
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - inail
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_EL
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - CONTROLLO_GESTIONE
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COMMERCIALE
+  - DIR_COST
+  - DIR_LAVORO
+  - DIR_PENALE_PA
+  - DIR_TRIBUTARIO
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - POLITICHE_PUBBLICHE
+  - PRIVACY
+  - PROC_AMM
+  - PROC_CIVILE
+  - PROC_PENALE
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - RAGIONERIA
+  - SCIENZA_FINANZE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  - STATISTICA
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=299
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Diritto del Lavoro e legislazione sociale
+  - Diritto tributario
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Ordinamento Istituzionale, finanziario e contabile degli Enti Locali (Titolo V e D.Lgs. 267/2000)
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Contabilità aziendale
+  - Analisi delle Politiche Pubbliche
+  - Diritto dell'Unione Europea
+  - Bilancio dell'Unione Europea
+  - Europrogettazione ed elementi di rendicontazione dei progetti europei
+  - Diritto Penale
+  - Elementi di Diritto processuale penale
+  - Diritto Civile e Commerciale
+  - Elementi di Diritto processuale civile
+  - Controlli nella Pubblica Amministrazione
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Corso di informatica
+  - Statistica, Data Science e Business Intelligence
+  - Corso di lingua inglese
+  - Competenze trasversali
+  - PNRR - Piano Nazionale di Ripresa e Resilienza
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-314
+  moodle_id: 314
+  tipo_corso: dedicato
+  titolo: Concorso SNA per 73 Dirigenti (corso-concorso)
+  livello:
+  - dirigente
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - scuola nazionale dell'amministrazione
+  - sna
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - POLITICHE_PUBBLICHE
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=314
+  sezioni_moodle:
+  - Competenze trasversali
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - Diritto dell'Unione Europea
+  - Bilancio dell'Unione Europea
+  - Europrogettazione ed elementi di rendicontazione dei progetti europei
+  - Economia delle Amministrazioni Pubbliche, Public Management e Innovazione digitale
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Analisi delle Politiche Pubbliche
+  - Corso di informatica
+  - Corso di lingua inglese (livello B2)
+  - Simulazione dei quesiti di ragionamento verbale e logico-astratto
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-342
+  moodle_id: 342
+  tipo_corso: dedicato
+  titolo: Concorso per 10 Dirigenti di seconda fascia - Ministero dell'Istruzione e del Merito
+  livello:
+  - dirigente
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - istruzione e del merito
+  - mim
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=342
+  sezioni_moodle:
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Orientamento ai test preselettivi
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - La semplificazione amministrativa
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - General Data Protection Regulation (GDPR)
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Diritto dell'Unione Europea
+  - Bilancio dell'Unione Europea
+  - Corso di informatica
+  - Corso di lingua inglese
+  - Competenze trasversali
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-291
+  moodle_id: 291
+  tipo_corso: dedicato
+  titolo: Concorso per 2 Dirigenti Amministrativi - Roma Capitale
+  livello:
+  - dirigente
+  comparti:
+  - Funzioni Locali
+  enti_target:
+  - roma capitale
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_EL
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - CONTROLLO_GESTIONE
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_TRIBUTARIO
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=291
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Diritto tributario
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Ordinamento Istituzionale, finanziario e contabile degli Enti Locali (Titolo V e D.Lgs. 267/2000)
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Diritto dell'Unione Europea
+  - Bilancio dell'Unione Europea
+  - Diritto Civile
+  - Elementi di Diritto Penale
+  - Controlli nella Pubblica Amministrazione
+  - Competenze trasversali, attitudinali e gestionali
+  - Orientamento ai test preselettivi di ragionamento e logica
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Corso di informatica
+  - Corso di lingua inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-320
+  moodle_id: 320
+  tipo_corso: dedicato
+  titolo: Concorso ARPAC per 5 Dirigenti - Regione Campania
+  livello:
+  - dirigente
+  comparti:
+  - Regioni ed Enti Locali
+  - Altro
+  enti_target:
+  - arpac
+  - arpa campania
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COST
+  - DIR_LAVORO
+  - DIR_PENALE_PA
+  - DIR_TRIBUTARIO
+  - ECONOMIA_AZIENDALE
+  - INFORMATICA
+  - INGLESE
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=320
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Diritto Civile
+  - Elementi di Diritto Penale
+  - Diritto del Lavoro e legislazione sociale
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Diritto tributario
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - General Data Protection Regulation (GDPR)
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Corso di informatica
+  - Corso di lingua inglese
+  - Competenze trasversali
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-251
+  moodle_id: 251
+  tipo_corso: dedicato
+  titolo: Concorso per 1800 Assistenti - Ministero della Cultura
+  livello:
+  - istruttore
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - ministero della cultura
+  - mic
+  materie:
+  - AMBIENTE
+  - BENI_CULTURALI
+  - BILANCIO_STATO
+  - COMUNICAZIONE_PA
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_UE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=251
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Comunicazione e Marketing culturale
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Diritto dell'Unione Europea
+  - General Data Protection Regulation (GDPR)
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Elementi di Diritto Penale
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Codice ambientale, Elementi di Diritto del Patrimonio Culturale, Codice dei Beni Culturali e del Paesaggio
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Lezioni di informatica
+  - Lezioni di inglese
+  - Competenze trasversali
+  - Capacità logico-deduttiva e di ragionamento critico-verbale
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-252
+  moodle_id: 252
+  tipo_corso: dedicato
+  titolo: Concorso per 577 Funzionari - Ministero della Cultura
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - ministero della cultura
+  - mic
+  materie:
+  - AMBIENTE
+  - BENI_CULTURALI
+  - BILANCIO_STATO
+  - COMUNICAZIONE_PA
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=252
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Comunicazione e Marketing culturale
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Codice ambientale, Elementi di Diritto del Patrimonio Culturale, Codice dei Beni Culturali e del Paesaggio
+  - Principi di Economia politica e Politica economica
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Diritto dell'Unione Europea
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Bilancio dell'Unione Europea
+  - Europrogettazione ed elementi di rendicontazione dei progetti europei
+  - Diritto Civile
+  - Elementi di Diritto Penale
+  - Competenze trasversali
+  - Simulazioni per i quesiti di capacità logico-deduttiva e di ragionamento critico-verbale
+  - Lezioni di informatica
+  - Lezioni di inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-266
+  moodle_id: 266
+  tipo_corso: dedicato
+  titolo: Concorso per 1100 Assistenti - Ministero della Difesa
+  livello:
+  - istruttore
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - difesa
+  materie:
+  - AMBIENTE
+  - BENI_CULTURALI
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_UE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=266
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - General Data Protection Regulation (GDPR)
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Elementi di Diritto Penale
+  - Diritto dell'Unione Europea
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Codice ambientale, Elementi di Diritto del Patrimonio Culturale, Codice dei Beni Culturali e del Paesaggio
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Lezioni di informatica
+  - Lezioni di inglese
+  - Competenze trasversali
+  - Capacità logico-deduttiva e di ragionamento critico-verbale
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-292
+  moodle_id: 292
+  tipo_corso: dedicato
+  titolo: Concorso per 548 posti - Ministero dell'Economia e delle Finanze (MEF)
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - economia e delle finanze
+  - mef
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_EL
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - CONTROLLO_GESTIONE
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COMMERCIALE
+  - DIR_COST
+  - DIR_LAVORO
+  - DIR_PENALE_PA
+  - DIR_TRIBUTARIO
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - POLITICHE_PUBBLICHE
+  - PRIVACY
+  - PROC_AMM
+  - PROC_CIVILE
+  - PROC_PENALE
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - RAGIONERIA
+  - SCIENZA_FINANZE
+  - SICUREZZA_LAVORO
+  - SITUAZIONALI
+  - STATISTICA
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=292
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Diritto del Lavoro e legislazione sociale
+  - Diritto tributario
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Ordinamento Istituzionale, finanziario e contabile degli Enti Locali (Titolo V e D.Lgs. 267/2000)
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Contabilità aziendale
+  - Analisi delle Politiche Pubbliche
+  - Diritto dell'Unione Europea
+  - Bilancio dell'Unione Europea
+  - Europrogettazione ed elementi di rendicontazione dei progetti europei
+  - Diritto Penale
+  - Elementi di Diritto processuale penale
+  - Diritto Civile e Commerciale
+  - Elementi di Diritto processuale civile
+  - Controlli nella Pubblica Amministrazione
+  - Disciplina in materia di tutela della salute e della sicurezza nei luoghi di lavoro
+  - Corso di informatica
+  - Statistica, Data Science e Business Intelligence
+  - Corso di lingua inglese
+  - Competenze trasversali
+  - PNRR - Piano Nazionale di Ripresa e Resilienza
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-312
+  moodle_id: 312
+  tipo_corso: dedicato
+  titolo: Stabilizzazione 6.919 Addetti Ufficio del Processo - Ministero della Giustizia
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - giustizia
+  - ufficio per il processo
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - INFORMATICA
+  - INGLESE
+  - ORGANIZZAZIONE_PA
+  - POLIZIA_GIUD
+  - PROC_AMM
+  - PROC_CIVILE
+  - PROC_PENALE
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=312
+  sezioni_moodle:
+  - Competenze trasversali
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Elementi di Diritto processuale penale
+  - Elementi di Diritto processuale civile
+  - Elementi di Ordinamento giudiziario, Polizia giudiziaria e servizi di cancelleria
+  - Corso di informatica
+  - Corso di lingua inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-337
+  moodle_id: 337
+  tipo_corso: dedicato
+  titolo: Concorso per 622 assistenti gestionali - Agenzia delle Entrate
+  livello:
+  - istruttore
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - agenzia delle entrate
+  materie:
+  - ANTICORR
+  - CONTRATTI_PUBBLICI
+  - CONTROLLO_GESTIONE
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_COST
+  - DIR_TRIBUTARIO
+  - INFORMATICA
+  - INGLESE
+  - ORGANIZZAZIONE_PA
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=337
+  sezioni_moodle:
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Innovazione digitale nella Pubblica Amministrazione
+  - Ordinamento Agenzia delle Entrate
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Controlli nella Pubblica Amministrazione
+  - Corso di informatica
+  - Corso di lingua inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-355
+  moodle_id: 355
+  tipo_corso: dedicato
+  titolo: Concorso INPS per l'assunzione di 1695 Funzionari PECS
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - inps
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTROLLO_GESTIONE
+  - DIR_AMM
+  - DIR_COST
+  - DIR_LAVORO
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=355
+  sezioni_moodle:
+  - Competenze trasversali
+  - Corso di informatica base ed avanzata
+  - Corso di lingua inglese - Livello B1
+  - Corso di lingua inglese - Livello B2
+  - Orientamento alla fase di preselezione
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto del Lavoro e legislazione sociale
+  - Diritto Amministrativo
+  - General Data Protection Regulation (GDPR)
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Qualità totale, sistemi di controllo e controllo di gestione
+  - Controlli nella Pubblica Amministrazione
+  - Struttura organizzativa e Pianificazione strategica all'interno della PA
+  - Esercitazioni a completamento dei brani
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-356
+  moodle_id: 356
+  tipo_corso: dedicato
+  titolo: Concorso per 95 funzionari - MAECI (profilo ACC)
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - affari esteri
+  - maeci
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - DIR_AMM
+  - DIR_CONSOLARE
+  - DIR_COST
+  - DIR_INTERNAZIONALE
+  - DIR_UE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - ORGANIZZAZIONE_PA
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=356
+  sezioni_moodle:
+  - Competenze trasversali
+  - Orientamento ai test preselettivi
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - Diritto consolare
+  - Diritto dell'Unione Europea ed elementi di Diritto Internazionale
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Carta dei diritti dell'uomo
+  - Corso di informatica
+  - Corso di lingua inglese - Livello B2
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-357
+  moodle_id: 357
+  tipo_corso: dedicato
+  titolo: Concorso per l'assunzione di 400 Vigili del Fuoco (preselettiva)
+  livello:
+  - operatore
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - vigili del fuoco
+  materie:
+  - CULTURA_GENERALE
+  - DIR_COST
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - ORGANIZZAZIONE_PA
+  - PUBBL_IMPIEGO
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=357
+  sezioni_moodle:
+  - Storia d'Italia dal 1861 al secondo dopoguerra
+  - Diritto Costituzionale
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Panoramica sintetica della Normativa sul Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Elementi di Chimica
+  - Elementi di Fisica
+  - Corso di informatica
+  - Corso di lingua inglese - Livello B1
+  - Corso di lingua inglese - Livello B2
+  - Orientamento ai test preselettivi
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-359
+  moodle_id: 359
+  tipo_corso: dedicato
+  titolo: Concorso per 36 Funzionari amministrativi con competenze giuridiche - MASE
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - ambiente e della sicurezza energetica
+  - mase
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_UE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=359
+  sezioni_moodle:
+  - Orientamento alla prova preselettiva
+  - Competenze trasversali
+  - Simulazione prova preselettiva
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - Codice dei contratti pubblici
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Diritto dell'Unione Europea
+  - Elementi di Diritto Penale
+  - Corso di informatica
+  - Corso di lingua inglese - Livello B1
+  - Corso di lingua inglese - Livello B2
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-361
+  moodle_id: 361
+  tipo_corso: dedicato
+  titolo: Concorso per 14 Funzionari amministrativi con competenze economico-contabili - MASE
+  livello:
+  - funzionario
+  comparti:
+  - Funzioni Centrali
+  enti_target:
+  - ambiente e della sicurezza energetica
+  - mase
+  materie:
+  - BILANCIO_STATO
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=361
+  sezioni_moodle:
+  - Orientamento alla prova preselettiva
+  - Competenze trasversali
+  - Simulazione prova preselettiva
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Costituzionale
+  - Diritto Amministrativo
+  - Codice dei contratti pubblici
+  - Principi di Economia politica e Politica economica
+  - Economia del lavoro
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - Diritto dell'Unione Europea
+  - Corso di informatica
+  - Corso di lingua inglese - Livello B1
+  - Corso di lingua inglese - Livello B2
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-293
+  moodle_id: 293
+  tipo_corso: dedicato
+  titolo: Concorso per 200 Funzionari - Profilo amministrativo-contabile | Regione Sicilia
+  livello:
+  - funzionario
+  comparti:
+  - Regioni ed Enti Locali
+  enti_target:
+  - regione sicilia
+  - regione siciliana
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_EL
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_LAVORO
+  - DIR_UE
+  - ECONOMIA_AZIENDALE
+  - EUROPROGETTAZIONE
+  - INFORMATICA
+  - INGLESE
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - SCIENZA_FINANZE
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=293
+  sezioni_moodle:
+  - Che cos'è la PA e come si articola
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Diritto del Lavoro e legislazione sociale
+  - Codice dei contratti pubblici (Aggiornato alla riforma 36/2023)
+  - Ordinamento Istituzionale, finanziario e contabile degli Enti Locali (Titolo V e D.Lgs. 267/2000)
+  - Principi di Economia politica e Politica economica
+  - Scienza delle Finanze
+  - Bilancio e contabilità pubblica
+  - Diritto dell'Unione Europea
+  - Bilancio dell'Unione Europea
+  - Corso di informatica
+  - Corso di lingua inglese
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-338
+  moodle_id: 338
+  tipo_corso: dedicato
+  titolo: Concorso per 7 Assistenti Istruttori - Camera di Commercio di Brescia
+  livello:
+  - istruttore
+  comparti:
+  - Funzioni Locali
+  - Altro
+  enti_target:
+  - camera di commercio
+  materie:
+  - ANTICORR
+  - DIGITALE_PA
+  - DIR_AMM
+  - DIR_CIVILE
+  - DIR_COMMERCIALE
+  - DIR_COST
+  - INFORMATICA
+  - INGLESE
+  - LOGICA
+  - ORD_CAMERALE
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PUBBL_IMPIEGO
+  - SITUAZIONALI
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=338
+  sezioni_moodle:
+  - Orientamento ai test preselettivi
+  - Camera di Commercio di Brescia
+  - Organizzazione costituzionale dell'Ordinamento italiano
+  - Articolazione territoriale dell'Amministrazione Pubblica
+  - Excursus storico sulle leggi che hanno cambiato la PA
+  - Normativa del Pubblico Impiego (Legge 165/2001)
+  - Approfondimento sul Codice di comportamento dei dipendenti pubblici
+  - Innovazione digitale nella Pubblica Amministrazione
+  - Diritto Amministrativo
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - General Data Protection Regulation (GDPR)
+  - Diritto Civile e Commerciale
+  - Corso di informatica
+  - Corso di lingua inglese
+  - Competenze trasversali
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+- codice_corso: FPF-362
+  moodle_id: 362
+  tipo_corso: dedicato
+  titolo: Concorso per 16 assistenti amministrativi/contabili riservato a categorie protette - Regione Marche
+  livello:
+  - istruttore
+  comparti:
+  - Regioni ed Enti Locali
+  enti_target:
+  - regione marche
+  materie:
+  - ANTICORR
+  - BILANCIO_STATO
+  - CONTAB_EL
+  - CONTAB_PUBBLICA
+  - CONTRATTI_PUBBLICI
+  - DIR_AMM
+  - DIR_COST
+  - DIR_PENALE_PA
+  - DIR_TRIBUTARIO
+  - INFORMATICA
+  - INGLESE
+  - MANAGEMENT_PA
+  - ORGANIZZAZIONE_PA
+  - PRIVACY
+  - PROC_AMM
+  - PROGRAMMAZIONE_PA
+  - PUBBL_IMPIEGO
+  - SITUAZIONALI
+  - TUEL
+  ente_organizzatore: FP Formazione e Partecipazione
+  url: https://fpformazione.it/course/view.php?id=362
+  sezioni_moodle:
+  - Competenze trasversali (Soft skills)
+  - L'organizzazione costituzionale dell'Ordinamento italiano
+  - L'Articolazione territoriale dello Stato
+  - Normativa del pubblico impiego (Legge 165/2001)
+  - Codice di comportamento dei dipendenti pubblici
+  - Diritto costituzionale
+  - Diritto Amministrativo
+  - Codice dei contratti pubblici
+  - Elementi di Diritto Penale
+  - Ordinamento istituzionale, finanziario ed economico degli Enti Locali (Testo Unico)
+  - Disciplina dei Tributi comunali
+  - Bilancio e contabilità pubblica
+  - Economia delle Amministrazioni Pubbliche e Public Management
+  - I Piani e i Responsabili per la prevenzione della corruzione
+  - Il principio dell'Open Government e le norme sulla trasparenza
+  - General Data Protection Regulation (GDPR)
+  - Simulazioni da 60 domande della prova di concorso
+  - Corso di informatica
+  - Corso di lingua inglese | Livello B1
+  - Corso di lingua inglese | Livello B2
+  fonte_materie: Sezioni 'Contenuto del corso' (Moodle) lette il 22/09/2026
+
+# --- Tassonomia delle materie -------------------------------------------
+materie:
+  DIR_AMM:
+    label: Diritto amministrativo
+    kw:
+    - diritto amministrativo
+    - atto amministrativo
+    - l. 241
+    - legge 241
+  DIR_COST:
+    label: Diritto costituzionale
+    kw:
+    - diritto costituzionale
+    - costituzione
+  DIR_CIVILE:
+    label: Diritto civile
+    kw:
+    - diritto civile
+    - codice civile
+    - obbligazioni
+  DIR_PENALE_PA:
+    label: Diritto penale (reati contro la PA)
+    kw:
+    - diritto penale
+    - reati contro la pubblica amministrazione
+  PROC_PENALE:
+    label: Procedura penale
+    kw:
+    - procedura penale
+    - codice di procedura penale
+  PROC_AMM:
+    label: Procedimento amministrativo e accesso
+    kw:
+    - procedimento amministrativo
+    - accesso agli atti
+    - trasparenza
+  TUEL:
+    label: Ordinamento enti locali (TUEL)
+    kw:
+    - tuel
+    - 267/2000
+    - enti locali
+    - ordinamento degli enti locali
+  PUBBL_IMPIEGO:
+    label: Pubblico impiego e CCNL
+    kw:
+    - pubblico impiego
+    - 165/2001
+    - ccnl
+    - rapporto di lavoro
+    - codice di comportamento
+  ANTICORR:
+    label: Anticorruzione e trasparenza
+    kw:
+    - anticorruzione
+    - 190/2012
+    - 33/2013
+    - trasparenza
+  PRIVACY:
+    label: Privacy e protezione dati
+    kw:
+    - privacy
+    - gdpr
+    - 196/2003
+    - protezione dei dati
+  DIGITALE_PA:
+    label: Amministrazione digitale (CAD)
+    kw:
+    - cad
+    - amministrazione digitale
+    - 82/2005
+    - documento informatico
+  CONTRATTI_PUBBLICI:
+    label: Contratti pubblici
+    kw:
+    - contratti pubblici
+    - codice dei contratti
+    - 36/2023
+    - appalti
+  CONTAB_EL:
+    label: Contabilità degli enti locali
+    kw:
+    - contabilità degli enti locali
+    - contabilità pubblica degli enti
+    - bilancio comunale
+  ARMONIZZ_CONT:
+    label: Armonizzazione contabile (D.Lgs. 118/2011)
+    kw:
+    - 118/2011
+    - armonizzazione contabile
+  CONTAB_PUBBLICA:
+    label: Contabilità pubblica e di Stato
+    kw:
+    - contabilità pubblica
+    - contabilità di stato
+    - finanza pubblica
+  BILANCIO_STATO:
+    label: Bilancio dello Stato
+    kw:
+    - bilancio dello stato
+    - legge di bilancio
+    - 196/2009
+  RAGIONERIA:
+    label: Ragioneria generale
+    kw:
+    - ragioneria
+    - partita doppia
+    - bilancio d'esercizio
+  ECONOMIA_AZIENDALE:
+    label: Economia aziendale
+    kw:
+    - economia aziendale
+    - economia politica
+  STATISTICA:
+    label: Statistica
+    kw:
+    - statistica
+    - analisi dei dati
+    - statistico
+  CONTROLLO_GESTIONE:
+    label: Controllo di gestione
+    kw:
+    - controllo di gestione
+    - controlli interni
+    - 286/1999
+  PERFORMANCE:
+    label: Ciclo della performance
+    kw:
+    - performance
+    - 150/2009
+    - valutazione della performance
+  PROGRAMMAZIONE_PA:
+    label: Programmazione e pianificazione strategica
+    kw:
+    - programmazione
+    - pianificazione strategica
+    - piao
+  ORGANIZZAZIONE_PA:
+    label: Organizzazione della PA
+    kw:
+    - organizzazione della pubblica amministrazione
+    - organizzazione amministrativa
+  MANAGEMENT_PA:
+    label: Management pubblico e leadership
+    kw:
+    - management pubblico
+    - competenze manageriali
+    - leadership
+  CODICE_STRADA:
+    label: Codice della strada
+    kw:
+    - codice della strada
+    - 285/1992
+    - circolazione stradale
+  POLIZIA_LOCALE:
+    label: Ordinamento polizia locale
+    kw:
+    - polizia locale
+    - polizia municipale
+    - 65/1986
+    - vigilanza
+  POLIZIA_GIUD:
+    label: Polizia giudiziaria
+    kw:
+    - polizia giudiziaria
+  PUBBL_SICUREZZA:
+    label: Pubblica sicurezza (TULPS)
+    kw:
+    - tulps
+    - pubblica sicurezza
+    - 773/1931
+  SANZIONI_AMM:
+    label: Sanzioni amministrative (L. 689/1981)
+    kw:
+    - 689/1981
+    - sanzioni amministrative
+    - depenalizzazione
+  PEDAGOGIA:
+    label: Pedagogia e didattica
+    kw:
+    - pedagogia
+    - didattica
+    - progettazione educativa
+  PSICOLOGIA_SVILUPPO:
+    label: Psicologia dello sviluppo
+    kw:
+    - psicologia dello sviluppo
+    - psicologia dell'età evolutiva
+  LEGISLAZ_SCOLASTICA:
+    label: Legislazione scolastica e servizi 0-6
+    kw:
+    - legislazione scolastica
+    - 65/2017
+    - sistema integrato 0-6
+    - indicazioni nazionali
+  SERVIZI_EDUCATIVI:
+    label: Organizzazione servizi educativi e nidi
+    kw:
+    - servizi educativi
+    - nido
+    - asilo nido
+    - scuola dell'infanzia
+  LEGISLAZ_SANITARIA:
+    label: Legislazione sanitaria
+    kw:
+    - legislazione sanitaria
+    - 502/1992
+    - 833/1978
+    - ssn
+  ORG_SSN:
+    label: Organizzazione delle aziende sanitarie
+    kw:
+    - azienda sanitaria
+    - organizzazione sanitaria
+    - atto aziendale
+    - lea
+  DEONTOLOGIA_SAN:
+    label: Deontologia e responsabilità professionale sanitaria
+    kw:
+    - deontologia
+    - responsabilità professionale
+    - codice deontologico
+  SICUREZZA_LAVORO:
+    label: Sicurezza sul lavoro (D.Lgs. 81/2008)
+    kw:
+    - 81/2008
+    - sicurezza sul lavoro
+    - sicurezza nei luoghi di lavoro
+  INFORMATICA:
+    label: Informatica di base
+    kw:
+    - informatica
+    - apparecchiature informatiche
+    - applicazioni informatiche
+  INGLESE:
+    label: Lingua inglese
+    kw:
+    - lingua inglese
+    - inglese
+  TECNICA_EDILIZIA:
+    label: Edilizia
+    urbanistica e lavori pubblici: null
+    kw:
+    - urbanistica
+    - edilizia
+    - lavori pubblici
+    - 380/2001
+    - opere pubbliche
+  AMBIENTE:
+    label: Diritto dell'ambiente
+    kw:
+    - ambiente
+    - 152/2006
+    - ambientale
+  SERVIZI_SOCIALI:
+    label: Servizi sociali e legislazione sociale
+    kw:
+    - servizi sociali
+    - 328/2000
+    - assistente sociale
+    - welfare
+  INFORMATICA_AVANZATA:
+    label: Sistemi informativi e reti
+    kw:
+    - sistemi informativi
+    - reti
+    - database
+    - sicurezza informatica
+    - sviluppo software
+  DIR_UE:
+    label: Diritto dell'Unione Europea
+    kw:
+    - diritto dell'unione europea
+    - diritto europeo
+    - unione europea
+  DIR_LAVORO:
+    label: Diritto del lavoro e previdenza
+    kw:
+    - diritto del lavoro
+    - previdenza
+    - legislazione sociale
+  SCIENZA_FINANZE:
+    label: Scienza delle finanze
+    kw:
+    - scienza delle finanze
+  DIR_TRIBUTARIO:
+    label: Diritto tributario e tributi locali
+    kw:
+    - diritto tributario
+    - tributi
+    - fiscale
+  DIR_COMMERCIALE:
+    label: Diritto commerciale
+    kw:
+    - diritto commerciale
+    - diritto societario
+  PROC_CIVILE:
+    label: Procedura civile e ordinamento giudiziario
+    kw:
+    - procedura civile
+    - processuale civile
+    - ordinamento giudiziario
+  POLITICHE_PUBBLICHE:
+    label: Analisi delle politiche pubbliche
+    kw:
+    - politiche pubbliche
+    - scienza dell'amministrazione
+  LOGICA:
+    label: Logica e ragionamento (preselettiva)
+    kw:
+    - logico-deduttiv
+    - ragionamento
+    - logica
+    - preselettiva
+  SITUAZIONALI:
+    label: Quesiti situazionali e competenze trasversali
+    kw:
+    - situazional
+    - competenze trasversali
+    - soft skill
+    - comportamento organizzativo
+  ASSISTENZA_OSS:
+    label: Tecniche assistenziali OSS
+    kw:
+    - operatore socio
+    - tecniche assistenziali
+    - igiene della persona
+    - non autosufficien
+  ORD_CAMERALE:
+    label: Ordinamento e contabilità camerale
+    kw:
+    - camere di commercio
+    - 580/1993
+    - 254/2005
+  DIR_CONSOLARE:
+    label: Diritto consolare e ordinamento MAECI
+    kw:
+    - consolare
+    - maeci
+    - diritto internazionale
+  CULTURA_GENERALE:
+    label: Cultura generale, storia, scienze di base
+    kw:
+    - storia d'italia
+    - cultura generale
+    - chimica e fisica
+  BENI_CULTURALI:
+    label: Beni culturali e paesaggio
+    kw:
+    - beni culturali
+    - patrimonio culturale
+    - paesaggio
+    - 42/2004
+  COMUNICAZIONE_PA:
+    label: Comunicazione pubblica
+    kw:
+    - comunicazione pubblica
+    - comunicazione istituzionale
+    - marketing culturale
+    - 150/2000
+  EUROPROGETTAZIONE:
+    label: Fondi europei, europrogettazione e PNRR
+    kw:
+    - europrogettazione
+    - fondi europei
+    - pnrr
+    - bilancio dell'unione
+  DIR_INTERNAZIONALE:
+    label: Diritto internazionale e diritti umani
+    kw:
+    - diritto internazionale
+    - diritti dell'uomo
+  SANITA_DIGITALE:
+    label: Sanità digitale e FSE
+    kw:
+    - sanità digitale
+    - fascicolo sanitario
