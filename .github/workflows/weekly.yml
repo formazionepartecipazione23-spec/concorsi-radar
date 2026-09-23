@@ -1,0 +1,39 @@
+name: ConcorsiRadar settimanale
+on:
+  schedule:
+    - cron: "30 5 * * 1"
+  workflow_dispatch:
+concurrency: radar
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - name: Run settimanale
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m radar.run weekly
+      - name: Pubblica gli output in docs/ (serviti da GitHub Pages)
+        run: |
+          mkdir -p docs
+          cp output/concorsi_gestionale_latest.json output/report_concorsi_latest.html docs/
+          cp output/concorsi_gestionale_20*.json output/report_concorsi_20*.html output/concorsi_20*.xlsx docs/ 2>/dev/null || true
+          cp docs/report_concorsi_latest.html docs/index.html
+          ls -1t docs/concorsi_gestionale_20*.json 2>/dev/null | tail -n +13 | xargs -r rm -f
+          ls -1t docs/report_concorsi_20*.html   2>/dev/null | tail -n +13 | xargs -r rm -f
+          ls -1t docs/concorsi_20*.xlsx          2>/dev/null | tail -n +13 | xargs -r rm -f
+      - name: Salva database e output nel repository
+        run: |
+          git config user.name radar-bot
+          git config user.email radar@fpformazione.it
+          git add -A docs output/radar.sqlite
+          git commit -m "Radar $(date +%F)" || echo "nessuna modifica"
+          git push
+      - uses: actions/upload-artifact@v4
+        with: { name: concorsi-radar-output, path: output/ }
