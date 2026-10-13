@@ -73,7 +73,8 @@ class InpaPortale(BaseSource):
             ente=enti[0] if enti else "",
             titolo=(raw.get("titolo") or "").strip(),
             profilo=(raw.get("figuraRicercata") or "").strip(),
-            posti=int(posti) if isinstance(posti, (int, float)) and posti > 0 else self.guess_posti(raw.get("titolo") or ""),
+            posti=self.sanifica_posti(int(posti), raw.get("titolo") or "") if isinstance(posti, (int, float)) and posti > 0
+                  else self.guess_posti(raw.get("titolo") or ""),
             tipo=CATEGORIA_TIPO.get(cat) or self.guess_tipo(raw.get("titolo") or ""),
             regione=sedi[0] if sedi else "",
             sede=sedi[1] if len(sedi) > 1 else "",
