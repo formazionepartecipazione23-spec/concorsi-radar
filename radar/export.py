@@ -15,7 +15,12 @@ def export_json_gestionale(bandi: list[Bando], proposte: list[dict], nuovi_ids: 
         "schema": "fp-gestionale-concorsi/1",
         "generato": dt.datetime.now().isoformat(timespec="seconds"),
         "meta": meta,
-        "bandi": [{**b.to_export(), "nuovo_questa_settimana": b.id in nuovi_ids} for b in bandi],
+        "bandi": [{**b.to_export(),
+                   # il testo dell'atto in Gazzetta (contiene di norma le materie d'esame) serve al
+                   # gestionale (📚 Copertura catalogo) e al robot d'incrocio: si esporta SOLO per la
+                   # fonte gazzetta (per l'INPA ci sono i PDF allegati), accorciato come nel database
+                   "estratto_gu": (b.testo or "")[:8000] if b.fonte == "gazzetta" else "",
+                   "nuovo_questa_settimana": b.id in nuovi_ids} for b in bandi],
         "proposte_nuovi_percorsi": proposte,
     }
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
