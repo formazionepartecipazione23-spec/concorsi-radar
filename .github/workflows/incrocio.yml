@@ -1,0 +1,49 @@
+# =====================================================================
+#  Incrocio AUTOMATICO bandi <-> Catalogo formativo - GitHub Actions
+#  Gira nel cloud di GitHub ogni lunedì DOPO il giro del radar: per i
+#  bandi NUOVI scarica i PDF, estrae il programma d'esame e lo incrocia
+#  con le materie del 📚 Catalogo tramite Claude; salva le BOZZE nel
+#  database (il gestionale le mostra nel dettaglio bando come «bozza
+#  automatica»). Gli incroci già esistenti NON vengono mai riscritti.
+#  Se un giro fallisce, GitHub manda una mail al proprietario del repo.
+#
+#  Questo file va in: .github/workflows/incrocio.yml del repo concorsi-radar.
+#  Istruzioni complete nel LEGGIMI_Incrocio_GitHub.txt.
+# =====================================================================
+name: Incrocio bandi-catalogo
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'   # lunedì 11:00 ora legale italiana (10:00 solare), ben dopo il radar delle 7:30
+  workflow_dispatch:       # avvio manuale: per la PRIMA PASSATA alzare max_bandi
+    inputs:
+      max_bandi:
+        description: 'Quanti bandi incrociare in questo giro'
+        required: false
+        default: '80'
+
+concurrency: incrocio      # mai due giri insieme
+
+jobs:
+  incrocio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Dipendenze
+        run: pip install requests pypdf
+
+      - name: Scarica lo script dal repository
+        uses: actions/checkout@v4
+
+      - name: Incrocio bandi-catalogo con Claude
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAX_BANDI: ${{ github.event.inputs.max_bandi || '80' }}
+        run: python incrocio_bandi.py
