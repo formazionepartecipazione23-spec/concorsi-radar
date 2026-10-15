@@ -36,8 +36,12 @@ sources:
   gazzetta:
     enabled: true
     # GU 4ª Serie Speciale Concorsi (martedì e venerdì) - endpoint VERIFICATI il 22/09/2026
+    # È la fonte che copre i concorsi SANITARI pubblicati per esteso solo sui BUR regionali:
+    # l'estratto con la scadenza esce comunque qui per legge.
     base_url: https://www.gazzettaufficiale.it
-    ultimi_fascicoli: 2          # 2 = una settimana; il primo run puoi metterlo a 8 (~30 giorni)
+    ultimi_fascicoli: 4          # 4 = due settimane: margine se un giro del lunedì salta (i doppioni non fanno danni).
+                                 # RECUPERO ARRETRATI una tantum: metti 9 (tutto l'indice «ultimi 30 giorni»),
+                                 # lancia il workflow settimanale a mano da Actions, poi riporta a 4.
     testo_atto: true             # una GET per atto: testo integrale con materie d'esame
     tipi_esclusi: ["DIARIO", "AVVISO", "RETTIFICA", "AVVISO DI RETTIFICA", "GRADUATORIA"]
 
