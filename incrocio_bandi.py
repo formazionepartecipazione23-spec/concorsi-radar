@@ -30,7 +30,7 @@
 #                          da virgola (riscrive anche un incrocio esistente:
 #                          usare solo apposta)
 # =====================================================================
-import os, sys, io, json, re, datetime, time, collections
+import os, sys, io, json, re, datetime, time, collections, logging
 try:
     from zoneinfo import ZoneInfo
     ROMA = ZoneInfo("Europe/Rome")
@@ -38,6 +38,7 @@ except Exception:
     ROMA = None
 import requests
 from pypdf import PdfReader
+logging.getLogger("pypdf").setLevel(logging.ERROR)   # i PDF della PA sono pieni di avvisi innocui: log pulito
 
 RADAR_URL_DEFAULT = "https://formazionepartecipazione23-spec.github.io/concorsi-radar/concorsi_gestionale_latest.json"
 UA = {"User-Agent": "FPIncrocio/1.0 (FP Formazione e Partecipazione)"}
@@ -257,7 +258,13 @@ def main():
         try:
             testo = testo_del_bando(b)
             fonte = "bando" if len(testo) >= MIN_TESTO else "metadati"
-            estratto = estratto_programma(testo) if fonte == "bando" else ""
+            if fonte == "metadati":
+                # bandi dalla Gazzetta Ufficiale (es. sanità pubblicata per esteso solo sul BUR):
+                # niente PDF, ma il JSON del radar porta il testo dell'atto GU con le materie d'esame
+                eg = str(b.get("estratto_gu") or "")
+                if len(eg) >= 200:
+                    testo, fonte = eg, "gazzetta"
+            estratto = estratto_programma(testo) if fonte != "metadati" else ""
             payload = {
                 "bando": {"titolo": b.get("titolo") or "", "ente": b.get("ente") or "",
                           "profilo": b.get("profilo") or "", "comparto": b.get("comparto") or "",
@@ -293,7 +300,7 @@ def main():
                 senza_testo += 1
             print("  %d/%d %s — %d materie, %d temi scoperti%s" % (
                 n, len(da_fare), (b.get("titolo") or bid)[:70], len(mat), len(manc),
-                " [solo metadati]" if fonte == "metadati" else ""))
+                " [solo metadati]" if fonte == "metadati" else (" [atto GU]" if fonte == "gazzetta" else "")))
             time.sleep(1)
         except Exception as e:
             errori += 1
