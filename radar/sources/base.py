@@ -63,19 +63,6 @@ class BaseSource:
         return "Concorso pubblico"
 
     @staticmethod
-    def sanifica_posti(posti, titolo: str):
-        """InPA accetta valori-segnaposto (9999, 99999999) per elenchi di idonei, albi, graduatorie aperte:
-        in quei casi i posti non sono definiti e non devono entrare nelle somme."""
-        if posti is None:
-            return None
-        t = (titolo or "").lower()
-        senza_posti = any(k in t for k in ("elenco di idonei", "elenchi di idonei", "elenco idonei", "albo ", "albo permanente",
-                                           "short list", "manifestazione di interesse", "banca dati"))
-        if posti >= 9999 or (posti >= 500 and senza_posti):
-            return None
-        return int(posti)
-
-    @staticmethod
     def guess_posti(titolo: str):
         m = re.search(r"\b(?:n\.?\s*)?(\d{1,4})\s+(?:posti|unit[àa]|figure)", titolo.lower())
         return int(m.group(1)) if m else None

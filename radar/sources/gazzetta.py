@@ -98,7 +98,7 @@ class GazzettaConcorsi(BaseSource):
             titolo = re.sub(r"\s*\(\w+\)\s*Pag\.\s*\d+\s*$", "", titolo)
             href = html.unescape(m.group(1)); href = href if href.startswith("http") else self.cfg["base_url"] + href
             b = Bando(id=f"gu:{codice}", fonte=self.name, ente=nome_ente(ente),
-                      titolo=titolo, profilo=self._profilo(titolo), posti=self.sanifica_posti(self._posti(titolo), titolo),
+                      titolo=titolo, profilo=self._profilo(titolo), posti=self._posti(titolo),
                       tipo="Mobilità esterna" if "MOBILIT" in tipo_base else ("Concorso pubblico" if "CONCORSO" in tipo_base else "Selezione pubblica"),
                       comparto=SEZIONE_COMPARTO.get(sezione, ""), data_pubblicazione=pubb, scadenza=parse_scad(tipo_txt),
                       url_bando=href, url_allegati=[])
