@@ -1,6 +1,6 @@
 {
  "schema": "fp-gestionale-concorsi/1",
- "generato": "2026-10-20T07:43:47",
+ "generato": "2026-10-20T08:08:54",
  "meta": {
   "titolo": "Concorsi, Mobilità e Selezioni – Monitoraggio nazionale PA",
   "ente": "FP Formazione e Partecipazione – Provider ECM 7761",
@@ -78332,7 +78332,7 @@
    "ente": "Azienda Sanitaria Locale Roma 3 di Roma",
    "titolo": "Stabilizzazione del personale precario dirigenziale e non dirigenziale appartenente ai ruoli sanitario, socio-sanitario, amministrativo e tecnico, per la copertura di quattordici posti di vari profili professionali. (26E05281) (GU n.76 del 2-10-2026 ) --> Pag. 11",
    "profilo": "vari profili professionali",
-   "posti": null,
+   "posti": 14,
    "tipo": "Concorso pubblico",
    "comparto": "Sanità",
    "regione": "",
@@ -89705,7 +89705,7 @@
    "ente": "Azienda Sanitaria Locale Roma 1 di Roma",
    "titolo": "Concorso pubblico, in forma aggregata, per titoli ed esami, per la copertura di duecentosessantotto posti di infermiere, area dei professionisti della salute e dei funzionari, a tempo pieno ed indeterminato, per talune aziende. (26E05410) (GU n.78 del 9-10-2026 ) --> Pag. 13",
    "profilo": "infermiere",
-   "posti": null,
+   "posti": 268,
    "tipo": "Concorso pubblico",
    "comparto": "Sanità",
    "regione": "",
@@ -97132,7 +97132,7 @@
    "ente": "Azienda Sanitaria Locale di Rieti",
    "titolo": "Concorso pubblico, per titoli ed esami, per la copertura di ventidue posti di tecnico sanitario di radiologia medica, area dei professionisti della salute e dei funzionari, a tempo pieno ed indeterminato, di cui un posto riservato in favore delle categorie protette ai sensi dell'articolo 18, comma 2, della legge n. 68/1999. (26E05574) (GU n.80 del 16-10-2026 ) --> Pag. 16",
    "profilo": "tecnico sanitario di radiologia medica",
-   "posti": null,
+   "posti": 22,
    "tipo": "Concorso pubblico",
    "comparto": "Sanità",
    "regione": "",
@@ -102056,13 +102056,13 @@
      "n_bandi": 3
     },
     {
-     "codice": "PRIVACY",
-     "label": "Privacy e protezione dati",
+     "codice": "DIGITALE_PA",
+     "label": "Amministrazione digitale (CAD)",
      "n_bandi": 3
     },
     {
-     "codice": "DIGITALE_PA",
-     "label": "Amministrazione digitale (CAD)",
+     "codice": "PRIVACY",
+     "label": "Privacy e protezione dati",
      "n_bandi": 3
     }
    ],
@@ -102090,11 +102090,6 @@
      "n_bandi": 15
     },
     {
-     "codice": "CODICE_STRADA",
-     "label": "Codice della strada",
-     "n_bandi": 11
-    },
-    {
      "codice": "DIR_AMM",
      "label": "Diritto amministrativo",
      "n_bandi": 11
@@ -102107,6 +102102,11 @@
     {
      "codice": "POLIZIA_GIUD",
      "label": "Polizia giudiziaria",
+     "n_bandi": 11
+    },
+    {
+     "codice": "CODICE_STRADA",
+     "label": "Codice della strada",
      "n_bandi": 11
     },
     {
@@ -102125,7 +102125,7 @@
      "n_bandi": 8
     }
    ],
-   "proposta": "Percorso vigilanza per istruttore/funzionario (Funzioni Locali): Ordinamento polizia locale, Codice della strada, Diritto amministrativo, Ordinamento enti locali (TUEL)",
+   "proposta": "Percorso vigilanza per istruttore/funzionario (Funzioni Locali): Ordinamento polizia locale, Diritto amministrativo, Ordinamento enti locali (TUEL), Polizia giudiziaria",
    "priorita": 30.0,
    "bandi_esempio": [
     "Comune di Senna Comasco – Istruttore di vigilanza /Area Polizia Locale",
@@ -102154,8 +102154,8 @@
      "n_bandi": 4
     },
     {
-     "codice": "TUEL",
-     "label": "Ordinamento enti locali (TUEL)",
+     "codice": "PROC_AMM",
+     "label": "Procedimento amministrativo e accesso",
      "n_bandi": 4
     },
     {
@@ -102164,8 +102164,8 @@
      "n_bandi": 4
     },
     {
-     "codice": "PROC_AMM",
-     "label": "Procedimento amministrativo e accesso",
+     "codice": "TUEL",
+     "label": "Ordinamento enti locali (TUEL)",
      "n_bandi": 4
     },
     {
@@ -102174,7 +102174,7 @@
      "n_bandi": 3
     }
    ],
-   "proposta": "Percorso amministrativo per istruttore/operatore (Funzioni Locali): Logica e ragionamento (preselettiva), Diritto amministrativo, Ordinamento enti locali (TUEL), Pubblico impiego e CCNL",
+   "proposta": "Percorso amministrativo per istruttore/operatore (Funzioni Locali): Logica e ragionamento (preselettiva), Diritto amministrativo, Procedimento amministrativo e accesso, Pubblico impiego e CCNL",
    "priorita": 23.0,
    "bandi_esempio": [
     "Comune di Imola – Istruttore Politiche di Settore - Servizio Diritto allo Studio",
