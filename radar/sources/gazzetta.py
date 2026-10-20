@@ -111,15 +111,58 @@ class GazzettaConcorsi(BaseSource):
         m = re.search(r"post[oi] di ([^,.;]+?)(?:,| a tempo| presso| per |\.|$)", t, re.I)
         return m.group(1).strip() if m else ""
 
-    NUM = {"un": 1, "uno": 1, "una": 1, "due": 2, "tre": 3, "quattro": 4, "cinque": 5, "sei": 6, "sette": 7, "otto": 8, "nove": 9,
-           "dieci": 10, "undici": 11, "dodici": 12, "quindici": 15, "venti": 20, "trenta": 30, "cinquanta": 50, "cento": 100}
+    # Nella GU i posti sono spesso scritti IN LETTERE («duecentosessantotto posti di
+    # infermiere»): si convertono componendo migliaia/centinaia/decine/unità,
+    # elisioni comprese (ventuno, sessantotto). Aggiunto il 15/10/2026 dopo il caso
+    # del concorso aggregato Lazio da 268 infermieri, rimasto senza numero di posti.
+    UNITA = {"un": 1, "uno": 1, "una": 1, "due": 2, "tre": 3, "quattro": 4, "cinque": 5,
+             "sei": 6, "sette": 7, "otto": 8, "nove": 9}
+    TEENS = {"dieci": 10, "undici": 11, "dodici": 12, "tredici": 13, "quattordici": 14,
+             "quindici": 15, "sedici": 16, "diciassette": 17, "diciotto": 18, "diciannove": 19}
+    DECINE = {"venti": 20, "trenta": 30, "quaranta": 40, "cinquanta": 50, "sessanta": 60,
+              "settanta": 70, "ottanta": 80, "novanta": 90}
+
+    @classmethod
+    def parola_in_numero(cls, w):
+        """'duecentosessantotto' -> 268; '25' -> 25; parola ignota -> None."""
+        w = re.sub(r"[^a-zà-ù0-9]", "", str(w or "").lower())
+        if not w:
+            return None
+        if w.isdigit():
+            return int(w)
+        tot = 0
+        if w.startswith("mille"):
+            tot, w = 1000, w[5:]
+        else:
+            m = re.match(r"^(.*?)mila(.*)$", w)
+            if m and m.group(1):
+                k = cls.parola_in_numero(m.group(1))
+                if k:
+                    tot, w = k * 1000, m.group(2)
+        m = re.match(r"^(due|tre|quattro|cinque|sei|sette|otto|nove)?cento(.*)$", w)
+        if m:
+            tot += cls.UNITA.get(m.group(1), 1) * 100
+            w = m.group(2)
+        for nome, val in cls.DECINE.items():
+            if w.startswith(nome):
+                tot += val; w = w[len(nome):]; break
+            eliso = nome[:-1]                      # vent-uno, sessant-otto
+            if w.startswith(eliso) and w[len(eliso):len(eliso) + 1] in ("u", "o"):
+                tot += val; w = w[len(eliso):]; break
+        if w in cls.TEENS:
+            tot += cls.TEENS[w]; w = ""
+        elif w in cls.UNITA:
+            tot += cls.UNITA[w]; w = ""
+        if w:                                      # resto non riconosciuto: tieni il parziale se c'è
+            return tot or None
+        return tot or None
 
     def _posti(self, t: str):
         m = re.search(r"copertura di (\w+) post", t, re.I)
         if not m:
             return self.guess_posti(t)
-        w = m.group(1).lower()
-        return int(w) if w.isdigit() else self.NUM.get(w)
+        n = self.parola_in_numero(m.group(1))
+        return n if n else self.guess_posti(t)
 
     def testo_atto(self, b: Bando) -> Bando:
         """Scarica la pagina dell'atto (testo integrale GU): contiene spesso le materie d'esame."""
