@@ -42,3 +42,11 @@ jobs:
           git push
       - uses: actions/upload-artifact@v4
         with: { name: concorsi-radar-output, path: output/ }
+      - name: Fonti in errore -> giro ROSSO (il file è già stato pubblicato)
+        run: |
+          if [ -f output/FONTI_IN_ERRORE.txt ]; then
+            echo '⚠ QUESTE FONTI NON HANNO RISPOSTO (file pubblicato comunque, ma senza i loro bandi nuovi):'
+            cat output/FONTI_IN_ERRORE.txt
+            echo 'Guarda più su nel log le righe "HTTP ..." per capire il motivo (blocco, API cambiata...).'
+            exit 1
+          fi
