@@ -6,18 +6,13 @@ VERIFICATO IL 22/09/2026 con il browser (chiamate di rete del sito www.inpa.gov.
        body JSON: {"text": "", "status": ["OPEN"]}      (status come LISTA; stringa -> HTTP 500)
        risposta: pagina Spring {content:[...], totalElements, totalPages, last, ...}
        ordinamento: dataPubblicazione DESC.  Il 22/09/2026: 1.667 procedure aperte (75.373 totali).
-       campi record: id, codice, titolo, descrizioneBreve, figuraRicercata, dataPubblicazione,
-       dataScadenza (ISO UTC), tipoProcedura (es. TITOLI_COLLOQUIO), numPosti, statusLabel,
-       calculatedStatus, entiRiferimento[str], sedi[str], settori[str], categorie[str], allegatoMediaId
-  GET  https://portale.inpa.gov.it/concorsi-smart/api/concorso-public-area/{id}
-       dettaglio: company.name, sedi[{regioneDenominazione, provinciaDenominazione}], categorie[{name}],
-       settori[{name}], requisitiSpecifici, descrizione, linkGazzettaUfficiale, linkSitoPA,
-       allegati[{mediaId, label, tipo (BANDO_CONCORSO|...), sequence}]
-  GET  https://portale.inpa.gov.it/api/media/{mediaId}            -> file PDF dell'allegato
+  GET  https://portale.inpa.gov.it/concorsi-smart/api/concorso-public-area/{id}   -> dettaglio
+  GET  https://portale.inpa.gov.it/api/media/{mediaId}                            -> PDF allegato
   Pagina web del bando: https://www.inpa.gov.it/bandi-e-avvisi/dettaglio-bando-avviso/?concorso_id={id}
 
-Categorie (filtro categoriaId): Concorso, Selezione Professionisti ed Esperti, Concorsi DFP – Formez Pa,
-Avvisi di mobilità, Scelta PA/sede, Procedure Straordinarie, Bando Apprendistato, Avvisi OIV.
+21/10/2026: il portale aveva smesso di rispondere al robot (fonte ferma al 13/10):
+ci si presenta con intestazioni da browser (vedi base.py) + Origin/Referer di inpa.gov.it,
+e UNA PRIMA PAGINA VUOTA ora è un ERRORE segnalato, mai più un «0 bandi» silenzioso.
 """
 from __future__ import annotations
 import logging
@@ -42,6 +37,11 @@ CATEGORIE_ESCLUSE_DEFAULT = {"Scelta PA/sede", "Selezione Professionisti ed Espe
 
 class InpaPortale(BaseSource):
     name = "inpa_portale"
+
+    def __init__(self, cfg: dict):
+        super().__init__(cfg)
+        # il WAF del portale gradisce le richieste che arrivano «dal sito»
+        self.s.headers.update({"Origin": "https://www.inpa.gov.it", "Referer": "https://www.inpa.gov.it/"})
 
     def _search_url(self, page: int) -> str:
         return f"{self.cfg['base_url']}{self.cfg['search_path']}?page={page}&size={self.cfg.get('page_size', 100)}"
@@ -118,6 +118,8 @@ class InpaPortale(BaseSource):
             items = data.get("content")
             if not isinstance(items, list):
                 raise SourceError("inpa_portale: risposta senza 'content' -> struttura API cambiata")
+            if page == 0 and not items:
+                raise SourceError("inpa_portale: PRIMA PAGINA VUOTA (0 risultati) -> probabile blocco del portale o filtri cambiati")
             for raw in items:
                 try:
                     b = self.normalize(raw)

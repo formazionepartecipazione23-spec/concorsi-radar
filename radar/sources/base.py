@@ -4,7 +4,11 @@ import requests
 from ..models import Bando
 
 log = logging.getLogger("radar")
-UA = "ConcorsiRadar/0.1 (FP Formazione e Partecipazione; segreteria@fpformazione.it)"
+# 21/10/2026: il portale inPA ha smesso di rispondere allo User-Agent "ConcorsiRadar"
+# (fonte ferma al 13/10 senza che nessuno se ne accorgesse): ci si presenta come un
+# browser normale; il recapito resta nell'intestazione From, per correttezza.
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 
 
 class SourceError(Exception):
@@ -17,7 +21,12 @@ class BaseSource:
     def __init__(self, cfg: dict):
         self.cfg = cfg
         self.s = requests.Session()
-        self.s.headers["User-Agent"] = UA
+        self.s.headers.update({
+            "User-Agent": UA,
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "it-IT,it;q=0.9",
+            "From": "segreteria@fpformazione.it",
+        })
 
     def get(self, url, **kw):
         for i in range(3):
@@ -25,7 +34,7 @@ class BaseSource:
                 r = self.s.get(url, timeout=30, **kw)
                 if r.status_code == 200:
                     return r
-                log.warning("%s -> HTTP %s", url, r.status_code)
+                log.warning("%s -> HTTP %s %s", url, r.status_code, (r.text or "")[:200].replace("\n", " "))
             except requests.RequestException as e:
                 log.warning("%s -> %s", url, e)
             time.sleep(2 * (i + 1))
@@ -37,7 +46,7 @@ class BaseSource:
                 r = self.s.post(url, json=json, timeout=30, **kw)
                 if r.status_code == 200:
                     return r
-                log.warning("%s -> HTTP %s", url, r.status_code)
+                log.warning("%s -> HTTP %s %s", url, r.status_code, (r.text or "")[:200].replace("\n", " "))
             except requests.RequestException as e:
                 log.warning("%s -> %s", url, e)
             time.sleep(2 * (i + 1))
@@ -61,6 +70,19 @@ class BaseSource:
         if "stabilizzazione" in t:
             return "Stabilizzazione"
         return "Concorso pubblico"
+
+    @staticmethod
+    def sanifica_posti(posti, titolo: str):
+        """InPA accetta valori-segnaposto (9999, 99999999) per elenchi di idonei, albi, graduatorie aperte:
+        in quei casi i posti non sono definiti e non devono entrare nelle somme."""
+        if posti is None:
+            return None
+        t = (titolo or "").lower()
+        senza_posti = any(k in t for k in ("elenco di idonei", "elenchi di idonei", "elenco idonei", "albo ", "albo permanente",
+                                           "short list", "manifestazione di interesse", "banca dati"))
+        if posti >= 9999 or (posti >= 500 and senza_posti):
+            return None
+        return int(posti)
 
     @staticmethod
     def guess_posti(titolo: str):
