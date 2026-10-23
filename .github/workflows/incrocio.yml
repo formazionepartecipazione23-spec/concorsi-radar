@@ -21,6 +21,10 @@ on:
         description: 'Quanti bandi incrociare in questo giro'
         required: false
         default: '80'
+      rifai:
+        description: "Vuoto = solo bandi nuovi; 'bozze' = rifa anche le bozze automatiche; 'tutti' = rifa tutto (dopo un aggiornamento del Catalogo); oppure id di bandi separati da virgola"
+        required: false
+        default: ''
 
 concurrency: incrocio      # mai due giri insieme
 
@@ -46,4 +50,5 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MAX_BANDI: ${{ github.event.inputs.max_bandi || '80' }}
+          RIFAI: ${{ github.event.inputs.rifai || '' }}
         run: python incrocio_bandi.py
