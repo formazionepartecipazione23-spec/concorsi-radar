@@ -79,6 +79,15 @@ MODEL = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-4-5"
 ABASE = (os.environ.get("ANTHROPIC_BASE") or "https://api.anthropic.com").rstrip("/")
 MAXB  = int(os.environ.get("MAX_BANDI") or "80")
 RIFAI = set(x.strip() for x in (os.environ.get("RIFAI") or "").split(",") if x.strip())
+# 23/10d: RIFAI accetta anche le parole chiave 'bozze' (rifa' SOLO le bozze 🤖,
+# le coperture confermate a mano restano) e 'tutti' (rifa' TUTTO: usare apposta,
+# es. dopo un aggiornamento del Catalogo/Archivio)
+RIFAI_MODE = ""
+if any(x.lower() == "tutti" for x in RIFAI):
+    RIFAI_MODE = "tutti"
+elif any(x.lower() == "bozze" for x in RIFAI):
+    RIFAI_MODE = "bozze"
+RIFAI = set(x for x in RIFAI if x.lower() not in ("tutti", "bozze"))
 
 HDR = {"apikey": SKEY, "User-Agent": UA["User-Agent"]}
 if SKEY.startswith("eyJ"):
@@ -232,8 +241,10 @@ def main():
     per_id = {m["id"]: m for m in materie_cat}
     print("Catalogo: %d materie" % len(materie_cat))
 
-    esistenti = set(r["id"] for r in leggi_tabella("tipo=eq.incrocio", select="id"))
-    print("Incroci gia' presenti: %d" % len(esistenti))
+    esistenti = {}
+    for r in leggi_tabella("tipo=eq.incrocio", select="id,data"):
+        esistenti[r["id"]] = bool((r.get("data") or {}).get("auto"))
+    print("Incroci gia' presenti: %d (modalita' RIFAI: %s)" % (len(esistenti), RIFAI_MODE or "solo nuovi"))
 
     oggi = adesso().strftime("%Y-%m-%d")
     candidati = []
@@ -244,8 +255,14 @@ def main():
         scad = str(b.get("scadenza") or "")
         if str(b.get("stato") or "") == "Scaduto" or (scad and scad < oggi):
             continue
-        if ("INC-" + bid) in esistenti and bid not in RIFAI:
-            continue
+        inc_id = "INC-" + bid
+        if inc_id in esistenti and bid not in RIFAI:
+            if RIFAI_MODE == "tutti":
+                pass                                  # si rifa' tutto, apposta
+            elif RIFAI_MODE == "bozze" and esistenti[inc_id]:
+                pass                                  # bozza 🤖: si puo' rifare
+            else:
+                continue                              # confermata a mano: MAI riscritta
         candidati.append(b)
     candidati.sort(key=lambda b: str(b.get("scadenza") or "9999"))
     da_fare = candidati[:MAXB]
