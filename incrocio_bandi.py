@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # =====================================================================
-#  Incrocio AUTOMATICO bandi <-> Catalogo formativo (v1 del 15/10/2026)
+#  Incrocio AUTOMATICO bandi <-> Catalogo formativo (v2 del 17/11/2026)
+#  v2: a Claude va anche l'INDICE DELLE LEZIONI di ogni materia, non solo il
+#  titolo: prima un argomento trattato in una lezione sotto una materia dal
+#  titolo diverso (Codice della strada dentro «Ordinamento della Polizia
+#  Locale», L. 241/1990, CAD, D.Lgs. 118/2011...) finiva tra i «mancanti».
+#  Ogni incrocio fatto cosi' porta v=2. RIFAI=bozze rifa' le sole bozze
+#  automatiche NON ancora v2 (rilanciabile finche' la coda arriva a 0).
+#  PROVA=<n>: rifa' n bozze esistenti SENZA salvarle e scrive il confronto
+#  prima/dopo nel log e nella riga INCROCIO-PROVA (tipo 'incrocio_prova').
 #  Gira su GitHub Actions nel repo concorsi-radar (vedi incrocio.yml),
 #  di norma il lunedi' DOPO il giro settimanale del radar:
 #    1. legge l'elenco bandi dal JSON pubblicato su GitHub Pages;
@@ -53,8 +61,8 @@ SYSTEM = (
     "nessun commento. Non inventare dati che non trovi nel testo ricevuto. "
     "Ricevi un JSON con: 'bando' (titolo, ente, profilo, comparto, area, livello, tipo e eventuali "
     "materie indicative di un concorso pubblico), 'programma' (il testo del programma d'esame estratto "
-    "dal bando: puo' mancare o essere parziale) e 'materie' (il Catalogo formativo del provider: array "
-    "di {id, titolo}). Devi incrociare il concorso con il catalogo per preparare il corso di "
+    "dal bando: puo' mancare o essere parziale). Il Catalogo formativo del provider e' in fondo a queste "
+    "istruzioni: per ogni materia l'id, il titolo e l'INDICE DELLE LEZIONI che contiene. Devi incrociare il concorso con il catalogo per preparare il corso di "
     "preparazione. Restituisci un JSON: {\"materie\": [{\"id\": \"...\", \"motivo\": \"...\"}], "
     "\"mancanti\": [{\"tema\": \"...\", \"motivo\": \"...\"}], \"nota\": \"...\"}. Regole: in 'materie' "
     "metti SOLO id presenti nel catalogo ricevuto (mai inventarne), in ordine di importanza per quel "
@@ -62,6 +70,11 @@ SYSTEM = (
     "se c'e' il programma d'esame basati PRIMA DI TUTTO su quello, altrimenti deduci le materie tipiche "
     "del profilo da titolo/ente/comparto/area/livello; in 'mancanti' elenca i temi del programma d'esame "
     "che il catalogo NON copre e che andrebbero prodotti (massimo 12, i piu' importanti prima); "
+    "PRIMA di dichiarare mancante un tema cercalo nell'INDICE DELLE LEZIONI di tutte le materie, non "
+    "solo nei titoli: se una lezione lo tratta il tema e' COPERTO, quindi non va tra i mancanti e la "
+    "materia che lo contiene va tra le 'materie' (nel 'motivo' cita la lezione); "
+    "scrivi ogni tema mancante con la denominazione piu' breve e consueta della materia d'esame "
+    "(es. 'Urbanistica ed edilizia', 'Catasto ed estimo'), senza varianti e senza unire piu' temi; "
     "'nota' (facoltativa): una sola frase di avvertenza se i dati sono scarsi o il programma manca. "
     "Sii selettivo: solo materie davvero pertinenti, non tutto il catalogo."
 )
@@ -78,6 +91,7 @@ AKEY  = env("ANTHROPIC_API_KEY")
 MODEL = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-4-5"
 ABASE = (os.environ.get("ANTHROPIC_BASE") or "https://api.anthropic.com").rstrip("/")
 MAXB  = int(os.environ.get("MAX_BANDI") or "80")
+PROVA = int(re.sub(r"\D", "", os.environ.get("PROVA") or "") or "0")   # v2: n bozze da rifare senza salvare
 RIFAI = set(x.strip() for x in (os.environ.get("RIFAI") or "").split(",") if x.strip())
 # 23/10d: RIFAI accetta anche le parole chiave 'bozze' (rifa' SOLO le bozze 🤖,
 # le coperture confermate a mano restano) e 'tutti' (rifa' TUTTO: usare apposta,
@@ -196,6 +210,8 @@ def estratto_programma(testo):
         return out[:MAX_ESTRATTO]
     return t[:MAX_ESTRATTO - 4000] + "\n[...]\n" + t[-3900:]
 
+USO = collections.Counter()
+
 # ---------------- Claude ----------------
 def estrai_json(testo):
     t = testo.strip()
@@ -206,17 +222,67 @@ def estrai_json(testo):
         raise RuntimeError("nessun JSON nella risposta di Claude")
     return json.loads(t[i:j + 1])
 
+# ---------------- v2: indice delle lezioni ----------------
+MAX_LEZ_MATERIA = 70      # titoli di lezione per materia inviati a Claude
+_SCARTA = re.compile(r"^(questionario|quiz|test|simulatore|simulazione|esercitazione|verifica|attestato|"
+                     r"gradimento|forum|annunci|presentazione del corso|slide)\b", re.I)
+
+def titolo_lezione(l):
+    t = l if isinstance(l, str) else str((l or {}).get("titolo") or (l or {}).get("nome") or "")
+    t = re.sub(r"\.(pdf|pptx?|docx?|mp4|zip|xlsx?)$", "", t.strip(), flags=re.I)
+    t = re.sub(r"^(video[- ]?lezione|lezione|modulo|pillola introduttiva|pillola|dispensa|unit[aà])\s*", "", t, flags=re.I)
+    t = re.sub(r"^[\d.\s]*[-–—:.)]\s*", "", t)          # «4.5 - », «2 — », «1) »
+    t = re.sub(r"^[\d.]+\s+", "", t)
+    return re.sub(r"\s+", " ", t.replace("_", " ")).strip(" -–—")
+
+def indice_lezioni(lezioni):
+    visti, out = set(), []
+    for l in lezioni or []:
+        t = titolo_lezione(l)
+        if len(t) < 6 or _SCARTA.match(t):
+            continue
+        k = re.sub(r"[^a-z0-9]+", "", t.lower())
+        if k in visti:
+            continue
+        visti.add(k); out.append(t[:110])
+        if len(out) >= MAX_LEZ_MATERIA:
+            break
+    return out
+
+def testo_catalogo(materie_cat):
+    righe = ["CATALOGO FORMATIVO (id | titolo della materia; sotto, l'indice delle lezioni):"]
+    for m in materie_cat:
+        righe.append("%s | %s" % (m["id"], m["titolo"]))
+        for t in m.get("lezioni") or []:
+            righe.append("   - " + t)
+    return "\n".join(righe)
+
+CATALOGO_TXT = ""         # lo riempie main(): va nel 'system', in cache tra un bando e l'altro
+_CACHE_OK = True
+
 def chiedi_claude(payload):
-    r = requests.post(ABASE + "/v1/messages", headers={
-            "x-api-key": AKEY, "anthropic-version": "2023-06-01",
-            "content-type": "application/json"},
-        data=json.dumps({"model": MODEL, "max_tokens": 2500, "system": SYSTEM,
-            "messages": [{"role": "user", "content": json.dumps(payload, ensure_ascii=False)}]},
-            ensure_ascii=False).encode("utf-8"), timeout=300)
+    global _CACHE_OK
+    def chiama(con_cache):
+        blocco = {"type": "text", "text": SYSTEM + "\n\n" + CATALOGO_TXT}
+        if con_cache:
+            blocco["cache_control"] = {"type": "ephemeral"}
+        return requests.post(ABASE + "/v1/messages", headers={
+                "x-api-key": AKEY, "anthropic-version": "2023-06-01",
+                "content-type": "application/json"},
+            data=json.dumps({"model": MODEL, "max_tokens": 2500, "system": [blocco],
+                "messages": [{"role": "user", "content": json.dumps(payload, ensure_ascii=False)}]},
+                ensure_ascii=False).encode("utf-8"), timeout=300)
+    r = chiama(_CACHE_OK)
+    if r.status_code == 400 and _CACHE_OK:
+        _CACHE_OK = False             # il modello/endpoint non accetta la cache: si prosegue senza
+        r = chiama(False)
     out = r.json() if r.content else {}
     if r.status_code != 200:
         msg = (out.get("error") or {}).get("message") or ("HTTP %d" % r.status_code)
         raise RuntimeError("API Claude: " + str(msg)[:200])
+    u = out.get("usage") or {}
+    for k in ("input_tokens", "output_tokens", "cache_read_input_tokens", "cache_creation_input_tokens"):
+        USO[k] += int(u.get(k) or 0)
     testo = "\n".join(bl.get("text", "") for bl in out.get("content", []) if bl.get("type") == "text")
     return estrai_json(testo)
 
@@ -235,15 +301,24 @@ def main():
     materie_cat = []
     for r in cat:
         d = r.get("data") or {}
-        materie_cat.append({"id": r["id"], "titolo": d.get("titolo") or "", "sid": d.get("sid") or ""})
+        materie_cat.append({"id": r["id"], "titolo": d.get("titolo") or "", "sid": d.get("sid") or "",
+                            "lezioni": indice_lezioni(d.get("lezioni"))})
     if not materie_cat:
         sys.exit("ERRORE: il Catalogo formativo e' vuoto nel database: carica prima il seed dalla scheda 📚 Catalogo.")
     per_id = {m["id"]: m for m in materie_cat}
-    print("Catalogo: %d materie" % len(materie_cat))
+    global CATALOGO_TXT
+    CATALOGO_TXT = testo_catalogo(materie_cat)
+    print("Catalogo: %d materie, %d lezioni nell'indice (%d caratteri)" % (
+        len(materie_cat), sum(len(m["lezioni"]) for m in materie_cat), len(CATALOGO_TXT)))
 
-    esistenti = {}
+    esistenti, v2, vecchi = {}, set(), {}
     for r in leggi_tabella("tipo=eq.incrocio", select="id,data"):
-        esistenti[r["id"]] = bool((r.get("data") or {}).get("auto"))
+        dd = r.get("data") or {}
+        esistenti[r["id"]] = bool(dd.get("auto"))
+        if int(dd.get("v") or 1) >= 2:
+            v2.add(r["id"])
+        if PROVA:
+            vecchi[r["id"]] = dd
     print("Incroci gia' presenti: %d (modalita' RIFAI: %s)" % (len(esistenti), RIFAI_MODE or "solo nuovi"))
 
     oggi = adesso().strftime("%Y-%m-%d")
@@ -256,7 +331,12 @@ def main():
         if str(b.get("stato") or "") == "Scaduto" or (scad and scad < oggi):
             continue
         inc_id = "INC-" + bid
-        if inc_id in esistenti and bid not in RIFAI:
+        if PROVA:
+            if not (inc_id in esistenti and esistenti[inc_id] and inc_id not in v2):
+                continue                              # prova: solo bozze automatiche gia' fatte col metodo vecchio
+        elif inc_id in esistenti and bid not in RIFAI:
+            if RIFAI_MODE == "bozze" and esistenti[inc_id] and inc_id in v2:
+                continue                              # bozza gia' rifatta con l'indice delle lezioni
             if RIFAI_MODE == "tutti":
                 pass                                  # si rifa' tutto, apposta
             elif RIFAI_MODE == "bozze" and esistenti[inc_id]:
@@ -266,7 +346,12 @@ def main():
         candidati.append(b)
     candidati.sort(key=lambda b: str(b.get("scadenza") or "9999"))
     da_fare = candidati[:MAXB]
-    print("Bandi da incrociare: %d (in coda: %d)" % (len(da_fare), max(0, len(candidati) - MAXB)))
+    if PROVA:
+        passo = max(1, len(candidati) // PROVA)       # campione sparso su tutte le scadenze, non i primi n
+        da_fare = candidati[::passo][:PROVA]
+        print("PROVA: %d bozze rifatte con l'indice delle lezioni, NIENTE viene salvato tra gli incroci." % len(da_fare))
+    print("Bandi da incrociare: %d (in coda: %d)" % (len(da_fare), max(0, len(candidati) - len(da_fare))))
+    confronto = []
 
     fatti = senza_testo = errori = 0
     conta_temi = collections.Counter()
@@ -288,7 +373,6 @@ def main():
                           "area": b.get("area") or "", "livello": b.get("livello") or "",
                           "tipo": b.get("tipo") or "", "materie": b.get("materie") or []},
                 "programma": estratto,
-                "materie": [{"id": m["id"], "titolo": m["titolo"]} for m in materie_cat],
             }
             dati = chiedi_claude(payload)
             mat = []
@@ -310,7 +394,23 @@ def main():
                     "data": {"bando_id": bid, "bando_titolo": b.get("titolo") or "",
                              "ente": b.get("ente") or "", "materie": mat, "mancanti": manc,
                              "nota": nota, "quando": oggi, "auto": True, "fonte": fonte,
-                             "origine": "github"}}
+                             "origine": "github", "v": 2}}
+            if PROVA:
+                old = vecchi.get("INC-" + bid) or {}
+                tm = lambda L: [str((x.get("tema") if isinstance(x, dict) else x) or "") for x in (L or [])]
+                im = lambda L: [str(x.get("id") or "") for x in (L or []) if isinstance(x, dict)]
+                c = {"bando_id": bid, "titolo": (b.get("titolo") or "")[:140], "fonte": fonte,
+                     "materie_prima": im(old.get("materie")), "materie_dopo": im(mat),
+                     "mancanti_prima": tm(old.get("mancanti")), "mancanti_dopo": tm(manc)}
+                confronto.append(c)
+                print("  %d/%d %s" % (n, len(da_fare), c["titolo"][:70]))
+                print("      materie %d -> %d (aggiunte: %s) | mancanti %d -> %d" % (
+                    len(c["materie_prima"]), len(c["materie_dopo"]),
+                    ", ".join(sorted(set(c["materie_dopo"]) - set(c["materie_prima"]))) or "nessuna",
+                    len(c["mancanti_prima"]), len(c["mancanti_dopo"])))
+                fatti += 1
+                time.sleep(1)
+                continue
             salva_incrocio(riga)
             fatti += 1
             if fonte == "metadati":
@@ -323,6 +423,21 @@ def main():
             errori += 1
             print("  %d/%d %s — ERRORE: %s" % (n, len(da_fare), (b.get("titolo") or bid)[:70], str(e)[:160]))
 
+    print("Uso API in questo giro: %d token in ingresso, %d letti dalla cache, %d scritti in cache, %d in uscita" % (
+        USO["input_tokens"], USO["cache_read_input_tokens"], USO["cache_creation_input_tokens"], USO["output_tokens"]))
+    if PROVA:
+        mp = sum(len(c["mancanti_prima"]) for c in confronto); md = sum(len(c["mancanti_dopo"]) for c in confronto)
+        ap = sum(len(c["materie_prima"]) for c in confronto); ad = sum(len(c["materie_dopo"]) for c in confronto)
+        print("ESITO DELLA PROVA su %d bandi: temi mancanti %d -> %d; materie abbinate %d -> %d; %d errori." % (
+            len(confronto), mp, md, ap, ad, errori))
+        try:
+            salva_incrocio({"id": "INCROCIO-PROVA", "tipo": "incrocio_prova",
+                            "data": {"quando": adesso().strftime("%Y-%m-%d %H:%M"), "modello": MODEL,
+                                     "uso": dict(USO), "errori": errori, "bandi": confronto}})
+            print("Confronto completo salvato nella riga INCROCIO-PROVA (gli incroci veri non sono stati toccati).")
+        except Exception as e:
+            print("  avviso: confronto non salvato nel database (%s): resta nel log qui sopra." % str(e)[:120])
+        return
     print("Fine giro: %d bozze salvate (%d dai soli metadati), %d errori, %d bandi ancora in coda." % (
         fatti, senza_testo, errori, max(0, len(candidati) - MAXB)))
     if conta_temi:
