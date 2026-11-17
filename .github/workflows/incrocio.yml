@@ -25,6 +25,10 @@ on:
         description: "Vuoto = solo bandi nuovi; 'bozze' = rifa anche le bozze automatiche; 'tutti' = rifa tutto (dopo un aggiornamento del Catalogo); oppure id di bandi separati da virgola"
         required: false
         default: ''
+      prova:
+        description: "PROVA senza salvare: quante bozze esistenti rifare con l'indice delle lezioni (es. 50). Vuoto = giro normale"
+        required: false
+        default: ''
 
 concurrency: incrocio      # mai due giri insieme
 
@@ -51,4 +55,5 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MAX_BANDI: ${{ github.event.inputs.max_bandi || '80' }}
           RIFAI: ${{ github.event.inputs.rifai || '' }}
+          PROVA: ${{ github.event.inputs.prova || '' }}
         run: python incrocio_bandi.py
